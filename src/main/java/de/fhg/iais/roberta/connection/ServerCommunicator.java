@@ -115,6 +115,7 @@ public class ServerCommunicator {
             }
             conn.connect();
         } catch ( IOException ioException ) {
+            LOG.error("Error", ioException);
             conn = getHttpConnection(url, requestMethod, requestProperties);
             conn.connect();
         }

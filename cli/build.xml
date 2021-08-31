@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<project name="cmd_roberta" default="all" basedir=".">
+	<path id="classpath">
+		<fileset dir="libs">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement path="classes" />
+		<pathelement path="resources" />
+	</path>
+	<target name="all" depends="compile" />
+	<target name="compile">
+		<mkdir dir="classes" />
+		<javac
+			srcdir="java"
+			destdir="classes"
+			debug="yes"
+			optimize="no"
+			deprecation="yes"
+			includeantruntime=""
+			target="1.8"
+			source="1.8"
+			>
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+	<target name="run" depends="compile">
+		<java classname="de.emdete.roberta.Main" fork="yes">
+			<classpath refid="classpath" />
+			<arg value="lab.open-roberta.org:443" />
+			<arg value="nano" />
+			<arg value="ttyUSB0" />
+		</java>
+	</target>
+	<target name="gui" depends="compile">
+		<java classname="de.fhg.iais.roberta.main.OpenRobertaConnector" fork="yes">
+			<classpath refid="classpath" />
+		</java>
+	</target>
+	<target name="ar" depends="compile">
+		<jar destfile="roberta.jar" >
+			<manifest>
+				<attribute name="Main-Class" value="de.emdete.roberta.Main"/>
+				<attribute name="Class-Path" value="resources"/>
+			</manifest>
+			<fileset dir="classes" />
+		</jar>
+	</target>
+	<target name="clean">
+		<delete dir="classes" />
+		<delete dir="javadoc" />
+		<delete file="roberta.jar" />
+	</target>
+</project>

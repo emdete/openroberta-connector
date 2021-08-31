@@ -30,6 +30,7 @@ public class ArduinoConnector extends AbstractConnector<Arduino> {
     protected void runLoopBody() {
         switch ( this.state ) {
             case DISCOVER:
+		LOG.info("Setting state to {}", this.state);
                 this.arduinoCommunicator = new ArduinoCommunicator(this.robot);
                 if (!this.arduinoCommunicator.isEspInitialized()) {
                     this.reset(State.ERROR_PYTHON_REQUIRE);

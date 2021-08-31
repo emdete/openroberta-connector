@@ -91,7 +91,7 @@ class ArduinoCommunicator {
                 case BOTNROLL:
                 case MBOT:
                     addAvrDudeStdParams(args, avrdudePath, avrdudeConfPath, filePath, portName);
-                    args.add("-patmega328p", "-carduino");
+                    args.add("-q", "-q", "-patmega328p", "-carduino", "-b57600");
                     return runProcessUntilTermination(args, true);
                 case MEGA:
                     addAvrDudeStdParams(args, avrdudePath, avrdudeConfPath, filePath, portName);
