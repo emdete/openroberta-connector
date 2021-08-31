@@ -1,10 +1,11 @@
 classes/
 debian/
+libs
+java/de/fhg
 control
 control.tar.gz
 data.tar.gz
 debian-binary
-libs
 logback.xml
 postrm
 preinst
