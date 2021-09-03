@@ -4,7 +4,7 @@
 all: debian
 
 cli:
-	cd .. && mvn package
+	cd .. && mvn package || true
 	ln -sf ../target/libs .
 	ln -sf ../../../src/main/java/de/fhg java/de
 	ant -emacs all
@@ -20,6 +20,7 @@ gui:
 
 debian: cli
 	ant -emacs ar
+	mkdir resources
 	cp -a ../resources/. resources/.
 	cp -a ../installers/linux/resources/. resources/.
 	cp logback.xml resources/.
